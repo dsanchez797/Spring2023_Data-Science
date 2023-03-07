@@ -1,0 +1,17 @@
+---
+title: "my_data_life_cycle.Rmd"
+author: "Damian Sanchez"
+date: "3/3/2023"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+1. Plan: Occurs whether you are aware of it or not 
+2. Collection: Collect data gathered from several databases 
+3. Process: Data wrangling, encryption, and compression 
+4. Storage: Storing the data in a file that can be used in the future
+5. Analyze: Going through the data and making sure the design of the experiment is not flawed. Making early conclusions of what the data entails
+6. Visualize: Create visual interpretetations for the data collected
+7. Publish: Publish findings to a credible source 
