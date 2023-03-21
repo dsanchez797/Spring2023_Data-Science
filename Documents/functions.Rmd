@@ -1,0 +1,78 @@
+---
+title: "functions.Rmd"
+author: "Damian Sanchez"
+date: "3/21/2023"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Exercise 1
+```{r}
+convert_pounds_to_grams <- function(pounds) {
+     grams = 453.6 * pounds
+     return(grams)
+convert_pounds_to_grams(3.75)
+ }
+```
+a) convert_pounds_to_grams is a function of pounds converted into grams 
+b)
+c)
+
+## Using and Modifying functions
+```{r}
+get_mass_from_length_theropoda <- function(length){
+  mass <- 0.73 * length ^ 3.63
+  return(mass)
+get_mass_from_length_theropoda(16)  
+}
+```
+
+## Create new version of this function
+```{r}
+get_mass_from_length <- function(length){
+  mass <- 214.44 * length ^ 1.46
+  return(mass)
+get_mass_from_length(26)
+}
+
+```
+
+## Introductory Section 
+Functions allow for the creation of modular code, which makes it easier to manage. Functions can be reused in different parts of a data science project. Functions provide a way to abstract away the details of a complex algorithm or process.
+
+
+# Exercise 3
+```{r}
+get_mass_from_length <- function(length){
+  mass <- 214.44 * length ^ 1.46
+  return(mass)
+get_mass_from_length(22)
+}
+get_mass_from_length <- function(length){
+  mass <- 39.9 * length ^ 2.6
+  return(mass)
+get_mass_from_length(16)
+}
+```
+
+#  Exercise 4
+```{r}
+convert_kg_to_pounds <- function(kg){
+  pounds = 2.205 * kg
+  return(pounds)
+  convert_kg_to_pounds(50)
+
+
+get_mass_from_length <- function(length, a=10.95, b=2.64)
+    mass = a * length ** b
+    return(mass)
+    get_mass_from_length(12)
+}
+```
+
+
+
