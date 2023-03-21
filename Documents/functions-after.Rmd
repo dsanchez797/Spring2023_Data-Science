@@ -1,0 +1,59 @@
+---
+title: "functions-after.Rmd"
+author: "Damian Sanchez"
+date: "3/21/2023"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Installing library package
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+#reading in the csv files 
+```{r}
+surveys <- read.csv(file = "../data-raw/surveys.csv")
+species <- read.csv(file = "../data-raw/species.csv")
+plots <- read.csv(file = "../data-raw/species.csv")
+```
+
+# combining surveys and species tables into single data frame
+```{r}
+combined_df <- inner_join(surveys, species, by ="species_id")
+```
+
+## writing a function that takes three arguments 
+```{r}
+get_species_count_by_year <- function(df, genus, species){
+  species_df <- df %>%
+  filter(genus == "Dipodomys" | species == "merriami")
+  count_df <- species_df %>%
+  group_by(year) %>%
+  summarize(count = n())
+return(count_df)
+}
+```
+
+# using function to get the data frame of time series by year for the genus "Dipodomys" and the species "merriami" and make a graph
+```{r}
+count_df <- get_species_count_by_year(combined_df, "Dipodomys", "merriami")
+
+ggplot(count_df, aes(x = year, y = count)) +
+  geom_point() +
+  labs(x = "Year", y = "Count", title = "Number of Dipodomys merriami individuals by year")
+```
+# Using the function to get the data frame series by year for the genus Chaetodipus and species penicillatus and make a graph
+
+```{r}
+count_df <- get_species_count_by_year(combined_df, "Chaetodipus", "penicillatus") 
+ggplot(count_df, aes(x = year, y = count)) +
+  geom_line(color = "blue", size = 2) +
+  geom_point(color = "blue", size = 1) +
+  labs(x = "Year", y = "Number of Individuals", title = "Number of Chaetodipus penicillatus individuals by year")
+```
+
