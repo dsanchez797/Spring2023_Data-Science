@@ -1,0 +1,108 @@
+---
+title: "functions-prep.Rmd"
+author: "Damian Sanchez"
+date: "3/23/2023"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Loading dplyr package
+```{r}
+library(dplyr)
+```
+
+
+# Writing your own functions in R
+
+## add up the values and vectors 
+```{r}
+sum(c(1, 2, 3))
+```
+
+## Writing a function
+```{r}
+function_name <- function(heights){
+  output_value <- do_something(inputs)
+  return(output_value)
+}
+{
+  a = 2
+  b = 3
+  a + b
+}
+calc_shrub_vol <- function(length, width, height = 1) {
+  area <- length * width 
+  volume <- area * height
+  return(volume)
+}
+
+calc_shrub_vol(0.8, 1.6, 2.0)
+shrub_vol <- calc_shrub_vol(0.8, 1.6, 2.0)
+```
+
+# How Functions Execute
+Functions operate only on the inputs and the program acts like it knows nothing about what is in the function except for the outputs that it returns.
+
+# Setting Default Values For Arguments
+
+## Running a Single Function
+```{r, error=FALSE}
+calc_shrub_vol(0.8, 1.6)
+```
+
+# When To Use Named and Unnamed Arguments
+
+## Named Arguments 
+```{r}
+calc_shrub_vol(length = 0.8, width = 1.6, height = 2.0)
+calc_shrub_vol(height = 2.0, lengt = 0.8, width = 1.6)
+```
+
+## Optional Arguments
+```{r}
+calc_shrub_vol( 0.8, 1.6, height = 2.0)
+```
+
+# Combining Functions
+
+## Est
+```{r}
+est_shrub_mass <- function(volume) {
+  mass <- 2.65 * volume^0.9
+  return(mass)
+}
+```
+
+## Combining
+```{r}
+shrub_volume <- calc_shrub_vol(0.8, 1.6, 2.0)
+shrub_mass <- est_shrub_mass(shrub_volume)
+```
+
+## Using Pipes
+```{r, error = FALSE}
+shrub_mass <- calc_shrub_vol(0.8, 1.6, 2.0) %>%
+  est_shrub_mass()
+```
+
+## Nesting Functions
+```{r}
+shrub_mass <- est_shrub_mass(calc_shrub_vol(0.8, 1.6, 2.0))
+```
+
+# Calling Functions Inside of Other Functions
+```{r}
+est_shrub_mass_dim <- function(length, width, height = 1) {
+  volume <- calc_shrub_vol(length, width, height)
+  mass <- est_shrub_mass(volume)
+  return(mass)
+}
+
+est_shrub_mass_dim(0.8, 1.6, height = 2.0)
+```
+
+# Rstudio Tips and Tricks
+To access the available functions, you can go to "Top Level" and access the function using the arrows. To collapse and exapnd the functions, use the arrows on the left hand corner. We can highlight functions by Global Options -> Tools -> Code -> Display -> Highlight R Function calls -> OK
