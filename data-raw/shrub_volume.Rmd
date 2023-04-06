@@ -1,0 +1,11 @@
+---
+title: "shrub_volume.Rmd"
+author: "Damian Sanchez"
+date: "3/14/2023"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+shrub_volume <- read.csv

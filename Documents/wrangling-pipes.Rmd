@@ -109,6 +109,23 @@ surveys2_filtered <- filter(surveys2, species_id == "SH")
 str(surveys2_filtered)
 ```
 
+Exercise 2
 
+```{r}
+read.csv(file = "../data-raw/surveys.csv") %>% select( year, month, day, species_id) -> surveys1
+str(surveys1) # Read the data set then select columns and assign to object
+surveys %>% select( year, species_id, weight) %>% 
+  mutate(weight_kg = weight/1000) %>% 
+  filter(!is.na(weight)) %>%
+  select(year, species_id, weight_kg) %>%
+  filter(species_id == "SH") -> surveys_final
+str(surveys_final)
+```
+
+## Exercise 3
+
+```{r}
+
+```
 
 
